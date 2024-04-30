@@ -1,0 +1,17 @@
+{
+    "menu": {
+        "Index": "Index",
+        "Terminals": "Terminals",
+        "Files": "Files",
+        "Users": "Users",
+        "Settings": "Settings",
+        "LogOut": "LogOut"
+    },
+    "popconfirm": {
+        "logout": {
+            "title": "Are you sure to log out?",
+            "yes": "Yes",
+            "no": "No"
+        }
+    }
+}

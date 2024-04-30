@@ -1,0 +1,53 @@
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="icon" href="icon/BCSP-64x64.png" />
+	<title>BCSPanel</title>
+
+	<script>
+		// https://github.com/bddjr/iehtml , Using MIT license.
+		try {
+			// ES2022
+			eval("(class { static { this.a = 1 } })").a.b
+		} catch (e) {
+			if (window.stop) { stop() }
+			try { document.getElementsByTagName('html')[0].style.display = 'none' } catch (e) { }
+			alert('Please upgrade or change browser')
+		}
+	</script>
+
+	<style>
+		html {
+			background-color: hsl(206, 100%, 90%);
+			--body-dark-bgcolor: #1d3043;
+		}
+
+		html.dark {
+			background-color: var(--body-dark-bgcolor);
+		}
+
+		body {
+			margin: 0;
+		}
+	</style>
+	<style id="loading_style">
+		@media (prefers-color-scheme: dark) {
+			html {
+				background-color: var(--body-dark-bgcolor);
+			}
+		}
+	</style>
+	<link rel="preload" as="image" href="icon/BCSPanel.png" />
+	<!-- <link rel="preload" as="image" href="icon/BCSP-64x64.png" /> -->
+	<link rel="preload" as="fetch" crossorigin href="./api-login/color-scheme">
+	<script type="module" src="/src/main.ts"></script>
+</head>
+
+<body>
+	<div id="app"></div>
+</body>
+
+</html>
