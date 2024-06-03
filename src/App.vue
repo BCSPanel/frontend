@@ -2,9 +2,9 @@
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import Menu from '@/Menu.vue'
-import MenuForMobile from '@/MenuForMobile.vue'
+// import MenuForMobile from '@/MenuForMobile.vue'
 // import looksLikeMobile from '@/components/looksLikeMobile'
-import isMobile from '@/components/isMobile'
+// import isMobile from '@/components/isMobile'
 
 // import { ref } from 'vue'
 
@@ -13,7 +13,8 @@ import isMobile from '@/components/isMobile'
 <template>
   <el-container>
 
-    <el-aside v-if="!isMobile">
+    <!-- <el-aside v-if="!isMobile"> -->
+    <el-aside>
       <Menu></Menu>
     </el-aside>
 
@@ -25,9 +26,9 @@ import isMobile from '@/components/isMobile'
       <!-- </el-scrollbar> -->
     </el-main>
 
-    <el-footer v-if="isMobile">
+    <!-- <el-footer v-if="isMobile">
       <MenuForMobile></MenuForMobile>
-    </el-footer>
+    </el-footer> -->
 
   </el-container>
 </template>

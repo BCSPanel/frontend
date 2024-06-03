@@ -2,7 +2,7 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
 	<meta name="robots" content="noindex, nofollow" />
 	<link rel="icon" href="icon/BCSP-64x64.png" />
 	<title>BCSPanel</title>
@@ -11,11 +11,11 @@
 		// https://github.com/bddjr/iehtml , Using MIT license.
 		try {
 			// ES2022
-			eval("(class { static { this.a = 1 } })").a.b
+			eval("(class { static { this.a = 1 } })").a.b;
 		} catch (e) {
-			if (window.stop) { stop() }
-			try { document.getElementsByTagName('html')[0].style.display = 'none' } catch (e) { }
-			alert('Please upgrade or change browser')
+			if (window.stop) { stop(); }
+			try { document.getElementsByTagName('html')[0].style.display = 'none'; } catch (e) { }
+			alert('Please upgrade or change browser');
 		}
 	</script>
 

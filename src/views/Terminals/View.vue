@@ -30,13 +30,13 @@ onMounted(() => {
         // 终端中的回滚量
         scrollback: 10,
         fontSize: 14,
-        rows: 20,
+        rows: 30,
         // 光标闪烁
         cursorBlink: true,
         theme: {
             //   字体
             foreground: '#ffffff',
-            background: '#000000',
+            background: '#0000',
             // 光标
             cursor: 'help',
         },
@@ -122,12 +122,12 @@ onMounted(() => {
 }
 
 .terminalDiv {
-    background-color: black;
+    background-color: rgb(20, 20, 20);
     /* display:flex; */
-    margin: 18px 0;
+    margin: 18px 0 2px;
     overflow: hidden;
-    border-radius: 6px;
-    padding: 2px;
+    border-radius: 8px;
+    padding: 4px;
 }
 
 .el-button {
