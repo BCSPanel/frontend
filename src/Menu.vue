@@ -46,8 +46,8 @@ import { icons as iconImgs } from '@/components/icons'
                 <span>{{ $t('menu.Settings') }}</span>
             </el-menu-item>
         </div>
-        <el-popconfirm @confirm="logout" :title="$t('popconfirm.logout.title')" :confirm-button-text="$t('popconfirm.logout.yes')"
-            :cancel-button-text="$t('popconfirm.logout.no')">
+        <el-popconfirm @confirm="logout" :title="$t('popconfirm.logout.title')"
+            :confirm-button-text="$t('popconfirm.logout.yes')" :cancel-button-text="$t('popconfirm.logout.no')">
             <template #reference>
                 <el-menu-item>
                     <el-icon>
@@ -64,7 +64,8 @@ import { icons as iconImgs } from '@/components/icons'
 .el-menu {
     height: 100%;
     transition: var(--el-transition-duration);
-    --el-menu-bg-color: hsl(210, 100%, 100%, 93%);
+    /* --el-menu-bg-color: hsl(210, 100%, 100%, 93%); */
+    --el-menu-bg-color: #0000;
     --el-menu-text-color: hsl(0, 0%, 39%);
     --el-menu-hover-text-color: hsl(0, 0%, 39%);
     --el-menu-active-color: hsl(212, 100%, 50%);
@@ -91,7 +92,8 @@ import { icons as iconImgs } from '@/components/icons'
 }
 
 html.dark .el-menu {
-    --el-menu-bg-color: hsla(0, 0%, 0%, 50%);
+    /* --el-menu-bg-color: hsla(0, 0%, 0%, 50%); */
+    --el-menu-bg-color: #0000;
     --el-menu-text-color: hsl(0, 0%, 80%);
     --el-menu-hover-text-color: #fff;
     --el-menu-active-color: #00b3ff;

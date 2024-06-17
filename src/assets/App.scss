@@ -12,6 +12,7 @@
     .el-aside {
         width: 140px;
         height: 100%;
+        background-color: hsl(210, 100%, 100%, 93%);
     }
 
     .el-main {
@@ -28,5 +29,13 @@
 
     .el-footer {
         --el-footer-padding: 0;
+    }
+}
+
+html.dark {
+    .el-container {
+        .el-aside {
+            background-color: hsla(0, 0%, 0%, 50%);
+        }
     }
 }
