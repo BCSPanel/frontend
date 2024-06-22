@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export interface Terminal {
     id: number
     name: string
@@ -9,9 +7,11 @@ export interface Terminal {
 }
 
 export async function getAllTerminals() {
-    return (await axios.get('./api/terminals')).data
+    const resp = await fetch('./api/terminals')
+    return await resp.json() as Terminal[]
 }
 
-export async function getTerminalStatu(id: number|string) {
-    return (await axios.get('./api/terminalView/' + id)).data
+export async function getTerminalStatu(id: number | string) {
+    const resp = await fetch('./api/terminalView/' + id)
+    return await resp.json() as Terminal
 }
