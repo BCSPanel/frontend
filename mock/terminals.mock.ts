@@ -61,7 +61,5 @@ export const terminals = [
 
 export default defineMock({
     url: '/api/terminals',
-    body: {
-        "terminals": terminals
-    }
+    body: terminals
 })

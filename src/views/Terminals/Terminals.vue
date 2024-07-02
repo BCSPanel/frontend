@@ -40,7 +40,7 @@ async function getAndDisplayTerminals() {
 	loadingTerminalsRow.value = true
 	try {
 		const allTerminals = await getAllTerminals()
-		terminals.value = allTerminals.terminals
+		terminals.value = allTerminals
 	} catch (e) {
 		ElMessage({
 			showClose: true,

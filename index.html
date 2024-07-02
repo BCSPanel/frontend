@@ -7,18 +7,6 @@
 	<link rel="icon" href="icon/BCSP-64x64.png" />
 	<title>BCSPanel</title>
 
-	<script>
-		// https://github.com/bddjr/iehtml , Using MIT license.
-		try {
-			// ES2022
-			eval("(class { static { this.a = 1 } })").a.b;
-		} catch (e) {
-			if (window.stop) { stop(); }
-			try { document.getElementsByTagName('html')[0].style.display = 'none'; } catch (e) { }
-			alert('Please upgrade or change browser');
-		}
-	</script>
-
 	<style>
 		html {
 			background-color: hsl(206, 100%, 90%);
@@ -42,7 +30,7 @@
 	</style>
 	<link rel="preload" as="image" href="icon/BCSPanel.png" />
 	<!-- <link rel="preload" as="image" href="icon/BCSP-64x64.png" /> -->
-	<link rel="preload" as="fetch" crossorigin href="./api-login/color-scheme">
+	<link rel="preload" as="fetch" crossorigin href="./api/color-scheme">
 	<script type="module" src="/src/main.ts"></script>
 </head>
 
