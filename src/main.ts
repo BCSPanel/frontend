@@ -12,7 +12,7 @@ import { i18nVue } from './i18n/i18n'
 const matchMediaDark = window.matchMedia("(prefers-color-scheme: dark)");
 let BCSPanelColorScheme = ''
 try {
-  BCSPanelColorScheme = (await (await fetch('./api/color-scheme')).text()).trim()
+  BCSPanelColorScheme = (await (await fetch('./api/color-scheme/')).text()).trim()
 } catch (e) {
   console.error(e);
 }
