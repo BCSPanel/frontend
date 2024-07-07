@@ -15,8 +15,9 @@ export default defineConfig({
 	server: {
 		// 监听所有地址（包括局域网与公网），方便内网调试
 		host: '0.0.0.0',
+		port: 24173,
 		proxy: {
-			'^/api(-login)?/': 'http://0.0.0.0',
+			'^/(api|login)/': 'http://127.0.0.1:24124',
 		},
 	},
 	base: './',
@@ -51,17 +52,17 @@ export default defineConfig({
 		Components({
 			resolvers: [ElementPlusResolver()],
 		}),
-		{
-			// script执行前阻止网页渲染
-			// https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script
-			name: "scriptBlockingRender",
-			transformIndexHtml(html) {
-				return html.replaceAll(
-					'<script type="module"',
-					'<script type="module" blocking="render" async'
-				);
-			}
-		},
+		// {
+		// 	// script执行前阻止网页渲染
+		// 	// https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script
+		// 	name: "scriptBlockingRender",
+		// 	transformIndexHtml(html) {
+		// 		return html.replaceAll(
+		// 			'<script type="module"',
+		// 			'<script type="module" blocking="render" async'
+		// 		);
+		// 	}
+		// },
 	],
 	resolve: {
 		alias: {
@@ -76,13 +77,18 @@ export default defineConfig({
 				entryFileNames: `assets/[name].js`,
 				chunkFileNames: `assets/[name].js`,
 				assetFileNames: `assets/[name].[ext]`,
+				manualChunks(id) {
+					if (id.includes("/node_modules/")) {
+						return "node_modules"
+					}
+				},
 			}
 		},
 		modulePreload: {
 			polyfill: false,
 		},
 		chunkSizeWarningLimit: Infinity,
-		cssCodeSplit: false,
+		cssCodeSplit: true,
 		assetsInlineLimit: 0,
 	}
 })
