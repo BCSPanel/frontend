@@ -94,7 +94,7 @@ import { icons as iconImgs } from '@/components/icons'
 html.dark .el-menu {
     /* --el-menu-bg-color: hsla(0, 0%, 0%, 50%); */
     --el-menu-bg-color: #0000;
-    --el-menu-text-color: hsl(0, 0%, 80%);
+    --el-menu-text-color: hsl(0, 0%, 94%);
     --el-menu-hover-text-color: #fff;
     --el-menu-active-color: #00b3ff;
     --el-menu-hover-bg-color: var(--el-color-primary-light-9);
