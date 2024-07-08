@@ -10,27 +10,15 @@
 	<style>
 		html {
 			background-color: hsl(206, 100%, 90%);
-			--body-dark-bgcolor: #1d3043;
+			--transition: background-color 0.3s;
 		}
 
 		html.dark {
-			background-color: var(--body-dark-bgcolor);
-		}
-
-		body {
-			margin: 0;
-		}
-	</style>
-	<style id="loading_style">
-		@media (prefers-color-scheme: dark) {
-			html {
-				background-color: var(--body-dark-bgcolor);
-			}
+			background-color: #1d3043;
 		}
 	</style>
 	<link rel="preload" as="image" href="icon/BCSPanel.png" />
 	<!-- <link rel="preload" as="image" href="icon/BCSP-64x64.png" /> -->
-	<link rel="preload" as="fetch" crossorigin href="api/color-scheme/">
 	<script type="module" src="/src/main.ts"></script>
 </head>
 

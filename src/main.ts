@@ -5,31 +5,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/router'
-import ElementClassListAddOrRemove from './components/elementClassListAddOrRemove'
 import { i18nVue } from './i18n/i18n'
+import { initColorScheme } from './components/colorScheme'
 
-// 深色模式
-const matchMediaDark = window.matchMedia("(prefers-color-scheme: dark)");
-let BCSPanelColorScheme = ''
-try {
-  BCSPanelColorScheme = (await (await fetch('./api/color-scheme/')).text()).trim()
-} catch (e) {
-  console.error(e);
-}
-
-function matchMediaDarkChange() {
-  ElementClassListAddOrRemove(
-    document.children[0],
-    BCSPanelColorScheme ? BCSPanelColorScheme == "dark" : matchMediaDark.matches,
-    "dark",
-  )
-}
-matchMediaDarkChange();
-if (!BCSPanelColorScheme) matchMediaDark.addEventListener("change", matchMediaDarkChange);
-
-// 移除加载时的style
-self.loading_style?.remove();
-
+initColorScheme()
 
 // 构建app
 const app = createApp(App)
