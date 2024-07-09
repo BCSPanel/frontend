@@ -7,7 +7,7 @@ import {
 } from '@vicons/ionicons5'
 
 
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { getAllTerminals, type Terminal } from '@/net/terminals';
 import { formatTime } from '@/components/dateformat';
 import { RouterLink } from 'vue-router';
@@ -15,26 +15,7 @@ import { RouterLink } from 'vue-router';
 
 const inputSearch = ref('')
 const terminals = ref<Terminal[]>([]);
-const defaultCardWidth = 300
-const cardWidth = ref(defaultCardWidth)
-const terminalsRow = ref()
 const loadingTerminalsRow = ref(true)
-
-// function toView(id:number){
-// 	router.push('')
-// }
-
-function onresize() {
-	const tr = terminalsRow.value as HTMLDivElement
-	if (!tr) return;
-	const elMain = document.getElementById('el-main') as HTMLDivElement
-	elMain.style.overflowY = 'hidden'
-	const ow = tr.offsetWidth + 10;
-	elMain.style.overflowY = ''
-	cardWidth.value = (ow / Math.floor(ow / (defaultCardWidth + 10))) - 10
-}
-watch(terminals, onresize, { deep: true });
-window.addEventListener('resize', onresize);
 
 async function getAndDisplayTerminals() {
 	loadingTerminalsRow.value = true
@@ -66,13 +47,8 @@ getAndDisplayTerminals()
 			<el-icon><icon-search /></el-icon>
 		</el-button>
 	</el-card>
-	<!-- <el-row :gutter="10">
-		<el-col :span="6" v-for="i in terminals">
-			<el-card class="card"></el-card>
-		</el-col>
-	</el-row> -->
-	<div class="terminalsRow" ref="terminalsRow" :style="'--card-width:' + cardWidth" v-loading="loadingTerminalsRow">
-		<div class="terminalsCol" v-for="i in terminals" :key="i.id">
+	<el-row :gutter="10" class="terminalsRow" v-loading="loadingTerminalsRow">
+		<el-col :span="6" class="terminalsCol" v-for="i in terminals" :key="i.id">
 			<router-link :to="{
 				name: 'terminalsView',
 				params: { id: i.id }
@@ -86,8 +62,8 @@ getAndDisplayTerminals()
 					<span class="statu">Status: {{ i.statu }}</span><br>
 				</el-card>
 			</router-link>
-		</div>
-	</div>
+		</el-col>
+	</el-row>
 </template>
 
 <style scoped>
@@ -96,27 +72,13 @@ getAndDisplayTerminals()
 }
 
 .terminalsRow {
-	/* width: 100%; */
-	display: flex;
-	flex-wrap: wrap;
-	/* justify-content: center; */
-	position: relative;
-	box-sizing: border-box;
-	/* margin-left: -5px; */
-	/* margin-right: -5px; */
-	gap: 10px;
-	min-height: 136px;
+	min-height: 147px;
 }
 
-.terminalsCol {
-	/* padding: 0 5px; */
-	width: 100%;
-	max-width: var(--card-width);
-}
+.terminalsCol {}
 
 .el-card.card {
 	font-size: 14px;
-	margin: 0;
 	overflow: hidden;
 	white-space: nowrap;
 }
