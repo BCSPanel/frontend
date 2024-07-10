@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import path from 'node:path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -73,6 +74,10 @@ export default defineConfig({
 		target: 'es2022',
 		reportCompressedSize: true, // 是否使用vite自带的方式打印压缩后的大小
 		rollupOptions: {
+			input: {
+				index: path.resolve('index.html'),
+				"404": path.resolve('404.html')
+			},
 			output: {
 				entryFileNames: `assets/[name].js`,
 				chunkFileNames: `assets/[name].js`,

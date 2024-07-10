@@ -14,7 +14,6 @@ import usersVue from '@/views/Users/Users.vue'
 import settingsVue from '@/views/Settings/Settings.vue'
 
 export default createRouter({
-  // history: createWebHistory(import.meta.env.BASE_URL),
   history: createWebHashHistory(),
   routes: [
     {
