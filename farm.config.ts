@@ -23,16 +23,11 @@ export default defineConfig({
     output: {
       targetEnv: 'browser-esnext',
       publicPath: './',
-      assetsFilename: "assets/[resourceName].[ext]",
+      filename: "assets/[resourceName].[ext]",
+      assetsFilename: "static/[resourceName].[ext]",
     },
     partialBundling: {
       targetConcurrentRequests: 1,
-      enforceResources: [
-        {
-          name: "index",
-          test: [".+"],
-        },
-      ],
     },
     runtime: {
       isolate: true,
@@ -40,5 +35,10 @@ export default defineConfig({
     sourcemap: false,
     comments: false,
     progress: false,
+    minify: {
+      compress: {
+        ecma: 6,
+      }
+    },
   },
 });
