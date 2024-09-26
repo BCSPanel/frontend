@@ -1,8 +1,20 @@
 import { defineConfig } from '@farmfe/core';
+import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig({
   plugins: [
     '@farmfe/plugin-react',
+  ],
+  vitePlugins: [
+    viteCompression({ algorithm: "brotliCompress" }),
+    viteCompression({ algorithm: "gzip" }),
+    {
+      name: 'afterbuild',
+      apply: 'build',
+      transformIndexHtml(html: string) {
+        return html.replace(/\n\s*/g, '')
+      },
+    },
   ],
   compilation: {
     output: {
