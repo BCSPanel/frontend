@@ -21,7 +21,7 @@ export default defineConfig({
       targetEnv: 'browser-esnext',
       publicPath: './',
       filename: "assets/[resourceName].[ext]",
-      assetsFilename: "static/[resourceName].[ext]",
+      assetsFilename: "assets/[resourceName].[ext]",
     },
     partialBundling: {
       targetConcurrentRequests: 1,
