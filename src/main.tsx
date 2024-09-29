@@ -8,12 +8,17 @@ import {
 	SettingOutlined,
 	TeamOutlined,
 } from "@ant-design/icons";
-import { ConfigProvider, Layout, Menu, theme } from "antd";
+import { ConfigProvider, Layout, Menu } from "antd";
 import { MenuItemType } from "antd/es/menu/interface";
 
 import "./main.css";
 
 import NoRoute from "./pages/NoRoute/NoRoute";
+import Index from "./pages/Index";
+import Terminals from "./pages/Terminals/Terminals";
+import Files from "./pages/Files/Files";
+import Users from "./pages/Users/Users";
+import Settings from "./pages/Settings/Settings";
 
 const { Sider } = Layout;
 
@@ -31,7 +36,7 @@ function getItem(
 	} as MenuItemType;
 }
 
-const items = [
+const topItems = [
 	getItem("Index", "/", <BarChartOutlined />),
 	getItem("Terminals", "/terminals", <CodeOutlined />),
 	getItem("Files", "/files", <FolderOutlined />),
@@ -42,7 +47,6 @@ const items = [
 const App: React.FC = () => {
 	const rLocation = useLocation();
 	const [collapsed, setCollapsed] = useState(document.body.clientWidth < 1024);
-	const { token } = theme.useToken();
 
 	return (
 		<Layout style={{ height: "100vh" }}>
@@ -74,17 +78,17 @@ const App: React.FC = () => {
 						theme="dark"
 						selectedKeys={[String(/\/\w*/.exec(rLocation.pathname))]}
 						mode="inline"
-						items={items}
+						items={topItems}
 					/>
 				</Sider>
 			</ConfigProvider>
 			<Layout style={{ margin: 8 }}>
 				<Routes>
-					<Route index element={"index"} />
-					<Route path="/terminals" element={"terminals"} />
-					<Route path="/files" element={"files"} />
-					<Route path="/users" element={"users"} />
-					<Route path="/settings" element={"settings"} />
+					<Route index element={<Index />} />
+					<Route path="/terminals" element={<Terminals />} />
+					<Route path="/files" element={<Files />} />
+					<Route path="/users" element={<Users />} />
+					<Route path="/settings" element={<Settings />} />
 					<Route path="*" element={<NoRoute />} />
 				</Routes>
 			</Layout>

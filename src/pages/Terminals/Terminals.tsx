@@ -1,4 +1,4 @@
 const Page: React.FC = () => {
-	return <div>Index</div>;
+	return <div>Terminals</div>;
 };
 export default Page;

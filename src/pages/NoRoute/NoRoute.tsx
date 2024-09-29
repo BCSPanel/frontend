@@ -1,7 +1,7 @@
 import React from "react";
 import { Result } from "antd";
 
-const NoRoute: React.FC = () => (
+const Page: React.FC = () => (
 	<div>
 		<Result
 			status="404"
@@ -11,4 +11,4 @@ const NoRoute: React.FC = () => (
 	</div>
 );
 
-export default NoRoute;
+export default Page;
