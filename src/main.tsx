@@ -8,7 +8,7 @@ import {
 	SettingOutlined,
 	TeamOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
+import { ConfigProvider, Layout, Menu, theme } from "antd";
 import { MenuItemType } from "antd/es/menu/interface";
 
 import "./main.css";
@@ -41,32 +41,43 @@ const items = [
 
 const App: React.FC = () => {
 	const rLocation = useLocation();
-	const [collapsed, setCollapsed] = useState(false);
+	const [collapsed, setCollapsed] = useState(document.body.clientWidth < 1024);
 	const { token } = theme.useToken();
 
 	return (
 		<Layout style={{ height: "100vh" }}>
-			<Sider
-				collapsible
-				collapsed={collapsed}
-				onCollapse={(value) => setCollapsed(value)}
+			<ConfigProvider
+				theme={{
+					components: {
+						Menu: {
+							darkItemHoverBg: "#1677ff60",
+						},
+					},
+				}}
 			>
-				<div
-					style={{
-						width: "100%",
-						padding: collapsed ? 6 : 16,
-						transition: "all 0.2s, background 0s",
-					}}
+				<Sider
+					collapsible
+					collapsed={collapsed}
+					onCollapse={(value) => setCollapsed(value)}
+					width={150}
 				>
-					<img src="/icon/BCSPanel.png" alt="" style={{ width: "100%" }} />
-				</div>
-				<Menu
-					theme="dark"
-					selectedKeys={[String(/\/\w*/.exec(rLocation.pathname))]}
-					mode="inline"
-					items={items}
-				/>
-			</Sider>
+					<div
+						style={{
+							width: "100%",
+							padding: collapsed ? 6 : 12,
+							transition: "all 0.2s, background 0s",
+						}}
+					>
+						<img src="/icon/BCSPanel.png" alt="" style={{ width: "100%" }} />
+					</div>
+					<Menu
+						theme="dark"
+						selectedKeys={[String(/\/\w*/.exec(rLocation.pathname))]}
+						mode="inline"
+						items={items}
+					/>
+				</Sider>
+			</ConfigProvider>
 			<Layout style={{ margin: 8 }}>
 				<Routes>
 					<Route index element={"index"} />
