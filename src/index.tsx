@@ -1,7 +1,11 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
-import Main from "./main";
+import App from "./main";
+import { HashRouter } from "react-router-dom";
 
-createRoot(document.getElementById('root') as Element).render(<Main />);
+createRoot(self.root).render(
+	<HashRouter>
+		<App />
+	</HashRouter>
+);
 
-document.getElementById("loading")?.remove();
+self.loading?.remove();

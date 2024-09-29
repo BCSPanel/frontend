@@ -4,4 +4,7 @@ declare module '*.css';
 
 declare interface Window {
     supportES2023: boolean
+
+    root: HTMLDivElement
+    loading?: HTMLDivElement
 }

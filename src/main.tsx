@@ -1,82 +1,81 @@
 import React, { useState } from "react";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 
 import {
-	DesktopOutlined,
-	FileOutlined,
-	PieChartOutlined,
+	BarChartOutlined,
+	CodeOutlined,
+	FolderOutlined,
+	SettingOutlined,
 	TeamOutlined,
-	UserOutlined,
 } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
+import { MenuItemType } from "antd/es/menu/interface";
 
 import "./main.css";
 
-const router = createHashRouter([
-	{
-		path: "/",
-		element: <div>Hello world!</div>,
-	},
-]);
+import NoRoute from "./pages/NoRoute/NoRoute";
 
-const { Header, Content, Footer, Sider } = Layout;
-
-type MenuItem = Required<MenuProps>["items"][number];
+const { Sider } = Layout;
 
 function getItem(
 	label: React.ReactNode,
 	key: React.Key,
 	icon?: React.ReactNode,
-	children?: MenuItem[]
-): MenuItem {
+	children?: MenuItemType[]
+) {
 	return {
 		key,
 		icon,
 		children,
-		label,
-	} as MenuItem;
+		label: <Link to={String(key)}>{label}</Link>,
+	} as MenuItemType;
 }
 
-const items: MenuItem[] = [
-	getItem("Option 1", "1", <PieChartOutlined />),
-	getItem("Option 2", "2", <DesktopOutlined />),
-	getItem("User", "sub1", <UserOutlined />, [
-		getItem("Tom", "3"),
-		getItem("Bill", "4"),
-		getItem("Alex", "5"),
-	]),
-	getItem("Team", "sub2", <TeamOutlined />, [
-		getItem("Team 1", "6"),
-		getItem("Team 2", "8"),
-	]),
-	getItem("Files", "9", <FileOutlined />),
+const items = [
+	getItem("Index", "/", <BarChartOutlined />),
+	getItem("Terminals", "/terminals", <CodeOutlined />),
+	getItem("Files", "/files", <FolderOutlined />),
+	getItem("Users", "/users", <TeamOutlined />),
+	getItem("Settings", "/settings", <SettingOutlined />),
 ];
 
 const App: React.FC = () => {
+	const rLocation = useLocation();
 	const [collapsed, setCollapsed] = useState(false);
-	const {
-		token: { colorBgContainer, borderRadiusLG },
-	} = theme.useToken();
+	const { token } = theme.useToken();
 
 	return (
-		<Layout style={{ minHeight: "100vh" }}>
+		<Layout style={{ height: "100vh" }}>
 			<Sider
 				collapsible
 				collapsed={collapsed}
 				onCollapse={(value) => setCollapsed(value)}
 			>
-				{/* <div className="demo-logo-vertical" /> */}
-        <img src="/icon/BCSPanel.png" alt="" />
+				<div
+					style={{
+						width: "100%",
+						padding: collapsed ? 6 : 16,
+						transition: "all 0.2s, background 0s",
+					}}
+				>
+					<img src="/icon/BCSPanel.png" alt="" style={{ width: "100%" }} />
+				</div>
 				<Menu
 					theme="dark"
-					defaultSelectedKeys={["1"]}
+					selectedKeys={[String(/\/\w*/.exec(rLocation.pathname))]}
 					mode="inline"
 					items={items}
 				/>
 			</Sider>
-			<Layout>
-				<RouterProvider router={router} />
+			<Layout style={{ margin: 8 }}>
+				<Routes>
+					<Route index element={"index"} />
+					<Route path="/terminals" element={"terminals"} />
+					<Route path="/files" element={"files"} />
+					<Route path="/users" element={"users"} />
+					<Route path="/settings" element={"settings"} />
+					<Route path="*" element={<NoRoute />} />
+				</Routes>
 			</Layout>
 		</Layout>
 	);

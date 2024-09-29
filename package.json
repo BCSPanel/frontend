@@ -1,6 +1,6 @@
 {
-  "name": "farm-project",
-  "version": "1.0.0",
+  "name": "frontend-antd",
+  "version": "0.0.0",
   "scripts": {
     "dev": "farm start",
     "start": "farm start",
