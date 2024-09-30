@@ -49,7 +49,7 @@ const App: React.FC = () => {
 	const [collapsed, setCollapsed] = useState(document.body.clientWidth < 1024);
 
 	return (
-		<Layout style={{ height: "100vh" }}>
+		<Layout style={{ height: "100vh", flexDirection: "row" }}>
 			<ConfigProvider
 				theme={{
 					components: {
