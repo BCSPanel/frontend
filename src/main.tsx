@@ -11,8 +11,6 @@ import {
 import { ConfigProvider, Layout, Menu } from "antd";
 import { MenuItemType } from "antd/es/menu/interface";
 
-import "./main.css";
-
 import NoRoute from "./pages/NoRoute/NoRoute";
 import Index from "./pages/Index";
 import Terminals from "./pages/Terminals/Terminals";
@@ -72,7 +70,7 @@ const App: React.FC = () => {
 							transition: "all 0.2s, background 0s",
 						}}
 					>
-						<img src="/icon/BCSPanel.png" alt="" style={{ width: "100%" }} />
+						<img src="./icon/BCSPanel.png" alt="" style={{ width: "100%" }} />
 					</div>
 					<Menu
 						theme="dark"
