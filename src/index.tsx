@@ -11,12 +11,3 @@ createRoot(self.root).render(
 );
 
 self.loading?.remove();
-
-// 修复切换页面时重复请求icon的bug
-const linkIcon = document.querySelector("link[rel=icon]") as HTMLLinkElement;
-fetch(linkIcon.href)
-	.then((resp) => resp.blob())
-	.then((b) => {
-		linkIcon.href = URL.createObjectURL(b);
-	});
-linkIcon.href = "data:";

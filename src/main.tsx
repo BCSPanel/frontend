@@ -18,6 +18,8 @@ import Files from "./pages/Files/Files";
 import Users from "./pages/Users/Users";
 import Settings from "./pages/Settings/Settings";
 
+import iconBCSPanel from "/icon/BCSPanel.png"
+
 const { Sider } = Layout;
 
 function getItem(
@@ -70,7 +72,7 @@ const App: React.FC = () => {
 							transition: "all 0.2s, background 0s",
 						}}
 					>
-						<img src="./icon/BCSPanel.png" alt="" style={{ width: "100%" }} />
+						<img src={iconBCSPanel} alt="" style={{ width: "100%" }} />
 					</div>
 					<Menu
 						theme="dark"
