@@ -2,7 +2,10 @@ function disable(b: boolean) {
     self.submit.disabled = b
 }
 
+let isFirstSetStatus = true
+
 function status(s: string) {
+    isFirstSetStatus = false
     if (s.startsWith('@')) {
         self.pStatus.innerText = ''
         self.pStatus.className = s.slice(1)
@@ -12,26 +15,14 @@ function status(s: string) {
     }
 }
 
-let abort: Function | null | void
-
 export async function submit(e: SubmitEvent) {
     console.log('submit');
     e.preventDefault()
 
-    try {
-        abort?.()
-    } catch (e) {
-        console.error(e);
-    }
-
     disable(true)
-    setTimeout(() => disable(false), 1000)
-    status('@wait-a-moment')
-    try {
-        // 如果运行了另一个函数，另一个函数可以终止当前请求
-        const controller = new AbortController();
-        abort = controller.abort;
+    if (!isFirstSetStatus) status('@wait-a-moment')
 
+    try {
         const resp = await fetch("api/login/login", {
             method: "POST",
             headers: {
@@ -46,14 +37,12 @@ export async function submit(e: SubmitEvent) {
                 // string 密码
                 password: self.inputPassword.value,
             }),
-            signal: controller.signal,
         });
 
         if (resp.ok) {
-            clearTimeout(undefined)
-            disable(true)
             return location.reload()
         }
+        disable(false)
         if (resp.status == 401) {
             const text = (await resp.text()).trim();
             if (text) return status(text)
@@ -63,7 +52,6 @@ export async function submit(e: SubmitEvent) {
         console.error(e);
         if ((e as DOMException | void)?.name != 'AbortError')
             status(String(e))
-    } finally {
-        abort = null
+        disable(false)
     }
 }
