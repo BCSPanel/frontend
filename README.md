@@ -1,37 +1,17 @@
-# Farm + React
+dev
 
-This template should help you start developing using React and TypeScript in Farm.
-
-## Setup
-
-Install the dependencies:
-
-```bash
-npm install
+```
+npm run dev
 ```
 
-## Get Started
+build
 
-Start the dev server:
-
-```bash
-npm start
+```
+npm run build
 ```
 
-Build the app for production:
+preview
 
-```bash
-npm build
 ```
-
-Preview the Production build product:
-
-```bash
-npm preview
-```
-
-Clear persistent cache local files
-
-```bash
-npm clean
+npm run preview
 ```
