@@ -2,54 +2,57 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.7" />
-  <link rel="icon" href="/icon/BCSP-64x64.png" />
-  <title>BCSPanel</title>
-  <script src="/loading-failed.js"></script>
-  <link rel="preload" as="image" href="./icon/BCSPanel.png">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.7" />
+	<link rel="icon" href="/icon/BCSP-64x64.png" />
+	<title>BCSPanel</title>
+
+	<script src="/loading-failed.js"></script>
+	<script nomodule>throw "Unsupported ES6"</script>
+	<script type="module" src="/src/index.tsx"></script>
+
+	<link rel="preload" as="image" href="./icon/BCSPanel.png">
 </head>
 
 <body>
-  <div id="loading">
-    <div id="loadingSpin"></div>
-    <style>
-      #loading {
-        display: flex;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #fff;
-        z-index: calc(infinity);
-      }
+	<div id="loading">
+		<div id="loadingSpin"></div>
+		<style>
+			#loading {
+				display: flex;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: #fff;
+				z-index: calc(infinity);
+			}
 
-      #loadingSpin {
-        margin: auto;
-        height: 30px;
-        width: 30px;
-        border-radius: 99px;
-        border: 3px solid #0000;
-        border-top-color: #1677ff;
-        animation: loading .8s infinite linear;
-      }
+			#loadingSpin {
+				margin: auto;
+				height: 30px;
+				width: 30px;
+				border-radius: 99px;
+				border: 3px solid #0000;
+				border-top-color: #1677ff;
+				animation: loading .8s infinite linear;
+			}
 
-      @keyframes loading {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
+			@keyframes loading {
+				100% {
+					transform: rotate(360deg);
+				}
+			}
 
-      @media (prefers-color-scheme: dark) {
-        #loading {
-          background-color: #000;
-        }
-      }
-    </style>
-  </div>
-  <div id="root"></div>
-  <script type="module" src="/src/index.tsx"></script>
+			@media (prefers-color-scheme: dark) {
+				#loading {
+					background-color: #000;
+				}
+			}
+		</style>
+	</div>
+	<div id="root"></div>
 </body>
 
 </html>

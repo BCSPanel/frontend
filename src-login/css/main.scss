@@ -1,0 +1,143 @@
+* {
+	box-sizing: border-box;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	transition-duration: 0.2s;
+	transition-property: color, background-color, box-shadow, border-color;
+}
+
+html {
+	background-color: white;
+	--blue-button: #1677ff;
+	--blue: var(--blue-button);
+	--blue-hover-button: #4096ff;
+	--blue-hover: var(--blue-hover-button);
+	--blue-disabled: #87bdff;
+	--blue-active: #0958d9;
+	--font-color: black;
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	margin: 0;
+}
+
+#root {
+	width: 300px;
+	margin: auto;
+	text-align: center;
+}
+
+#imgBCSPanel {
+	height: 32px;
+	// margin: 40px auto;
+	margin: 0 auto 30px;
+	display: block;
+}
+
+#unsupportedES2023 {
+	background-color: #ffebe9;
+	border: 1px solid #f8514966;
+	border-radius: 8px;
+	padding: 16px 8px;
+	color: black;
+}
+
+#welcome {
+	font-size: 32px;
+	margin-top: 140px;
+	color: var(--font-color);
+	display: none;
+}
+
+#formLogin {
+	padding: 16px;
+	margin: 0 0 30px;
+	background-color: #f6f8fa;
+	border: 1px solid #d1d9e0b3;
+	border-radius: 8px;
+	font-size: 14px;
+
+	input {
+		display: block;
+		width: 100%;
+		margin-bottom: 16px;
+		padding: 6px 10px;
+		border: 1px solid #d1d9e0;
+		border-radius: 8px;
+		line-height: 20px;
+		outline-color: var(--blue);
+		outline-width: 2px;
+		outline-offset: -2px;
+
+		&:focus {
+			outline-style: solid;
+		}
+	}
+
+	label {
+		display: inline;
+		float: left;
+		margin-bottom: 8px;
+		color: var(--font-color);
+	}
+
+	#aForgotPassword {
+		float: right;
+		display: inline;
+		color: var(--blue);
+
+		&:hover {
+			color: var(--blue-hover);
+		}
+
+		&:active {
+			color: var(--blue-active);
+		}
+	}
+
+	#pStatus {
+		font-size: 16px;
+		transition: none;
+		color: red;
+	}
+
+	#submit {
+		border: none;
+		background-color: var(--blue-button);
+		border-radius: 8px;
+		padding: 8px;
+		color: white;
+		width: 100%;
+		font-size: 16px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: var(--blue-hover-button);
+		}
+
+		&:active {
+			background-color: var(--blue-active);
+		}
+
+		&:disabled {
+			background-color: var(--blue-disabled);
+			cursor: no-drop;
+		}
+	}
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	align-items: center;
+	font-size: 12px;
+
+	a {
+		display: inline-block;
+		margin: 0;
+		width: auto;
+		color: gray;
+	}
+}

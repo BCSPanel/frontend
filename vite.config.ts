@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import viteCompression from 'vite-plugin-compression';
 import htmlMinimize from '@sergeymakinen/vite-plugin-html-minimize'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -39,6 +40,12 @@ export default defineConfig({
         terserOptions: {
             format: {
                 comments: false,
+            },
+        },
+        rollupOptions:{
+            input: {
+                index: path.resolve("index.html"),
+                login: path.resolve("login.html"),
             },
         },
         reportCompressedSize: false, // 是否使用vite自带的方式打印压缩后的大小

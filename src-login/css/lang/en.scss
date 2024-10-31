@@ -1,0 +1,32 @@
+html {
+	#unsupportedES2023::before {
+		content: "The browser does not support ES2023, please upgrade your browser!";
+	}
+
+	#submit::after {
+		content: "Login";
+	}
+
+	label[for="inputUserName"]::after {
+		content: "User name";
+	}
+
+	#aForgotPassword::after {
+		content: "Forgot password";
+	}
+
+	label[for="inputPassword"]::after {
+		content: "Password";
+	}
+
+	#pStatus {
+		&.wait-a-moment::after {
+			color: gray;
+			content: "Wait a moment...";
+		}
+
+		&.invalid-username-or-password::after {
+			content: "Invalid username or password";
+		}
+	}
+}
