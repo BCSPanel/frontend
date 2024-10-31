@@ -14,8 +14,8 @@ export default defineConfig({
     base: './',
     plugins: [
         react(),
-        viteCompression({ algorithm: "brotliCompress" }),
-        viteCompression({ algorithm: "gzip" }),
+        viteCompression({ algorithm: "brotliCompress", threshold: 256 }),
+        viteCompression({ algorithm: "gzip", threshold: 256 }),
         htmlMinimize({
             minifierOptions: {
                 collapseWhitespace: true,
@@ -42,7 +42,7 @@ export default defineConfig({
                 comments: false,
             },
         },
-        rollupOptions:{
+        rollupOptions: {
             input: {
                 index: path.resolve("index.html"),
                 login: path.resolve("login.html"),
