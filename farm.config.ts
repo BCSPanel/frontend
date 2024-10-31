@@ -17,6 +17,10 @@ export default defineConfig({
     },
   ],
   compilation: {
+    input: {
+      index: "index.html",
+      login: "login.html",
+    },
     output: {
       targetEnv: 'browser-esnext',
       publicPath: './',

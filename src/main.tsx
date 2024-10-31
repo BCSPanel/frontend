@@ -18,7 +18,7 @@ import Files from "./pages/Files/Files";
 import Users from "./pages/Users/Users";
 import Settings from "./pages/Settings/Settings";
 
-import iconBCSPanel from "/icon/BCSPanel.png"
+import iconBCSPanel from "../icon/BCSPanel.png"
 
 const { Sider } = Layout;
 
