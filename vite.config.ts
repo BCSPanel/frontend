@@ -9,6 +9,14 @@ export default defineConfig({
     server: {
         // 监听所有地址（包括局域网与公网），方便内网调试
         host: '0.0.0.0',
+        cors: false,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:24124',
+                changeOrigin: true,
+                rewriteWsOrigin: true,
+            },
+        },
     },
 
     base: './',
