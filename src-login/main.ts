@@ -1,3 +1,4 @@
+import "./css/index.scss";
 import { submit } from "./submit";
 
 function init() {
