@@ -2,7 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import viteCompression from 'vite-plugin-compression';
 import htmlMinimize from '@sergeymakinen/vite-plugin-html-minimize'
+import { minify_sync } from "terser";
 import path from 'path'
+import fs from 'fs'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,12 +20,22 @@ export default defineConfig({
             },
         },
     },
-
     base: './',
     plugins: [
         react(),
         viteCompression({ algorithm: "brotliCompress", threshold: 256 }),
         viteCompression({ algorithm: "gzip", threshold: 256 }),
+        {
+            name: "minify loading-failed.js",
+            apply: "build",
+            enforce: "post",
+            closeBundle() {
+                const name = "dist/loading-failed.js"
+                const src = fs.readFileSync(name).toString()
+                const output = minify_sync(src, { ie8: true })
+                if (output.code) fs.writeFileSync(name, output.code)
+            },
+        },
         htmlMinimize({
             minifierOptions: {
                 collapseWhitespace: true,
