@@ -1,13 +1,6 @@
-declare interface Document {
-    lastChild: HTMLHtmlElement
-}
+/// <reference types="../src/typings.d.ts" />
 
 declare interface Window {
-    supportES2023: boolean
-
-    loading?: HTMLStyleElement
-    root: HTMLDivElement
-
     imgBCSPanel: HTMLImageElement
     unsupportedES2023?: HTMLParagraphElement
 

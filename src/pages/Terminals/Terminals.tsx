@@ -1,34 +1,17 @@
 import { Card, Col, Row } from "antd";
 
 const Page: React.FC = () => {
-	return (
-		<Row gutter={[12, 12]}>
-			<Col span={6}>
+	let i = 0;
+	const listItems = Array(6)
+		.fill(null)
+		.map(() => (
+			<Col span={6} key={i++}>
 				<Card title="Card title" bordered={false}>
-					Card content
+					Card content {i}
 				</Card>
 			</Col>
-			<Col span={6}>
-				<Card title="Card title" bordered={false}>
-					Card content
-				</Card>
-			</Col>
-			<Col span={6}>
-				<Card title="Card title" bordered={false}>
-					Card content
-				</Card>
-			</Col>
-			<Col span={6}>
-				<Card title="Card title" bordered={false}>
-					Card content
-				</Card>
-			</Col>
-			<Col span={6}>
-				<Card title="Card title" bordered={false}>
-					Card content
-				</Card>
-			</Col>
-		</Row>
-	);
+		));
+
+	return <Row gutter={[12, 12]}>{listItems}</Row>;
 };
 export default Page;

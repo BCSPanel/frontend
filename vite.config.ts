@@ -32,7 +32,12 @@ export default defineConfig({
             closeBundle() {
                 const name = "dist/loading-failed.js"
                 const src = fs.readFileSync(name).toString()
-                const output = minify_sync(src, { ie8: true })
+                const output = minify_sync(src, {
+                    compress: {
+                        arrows: false,
+                        typeofs: false,
+                    }
+                })
                 if (output.code) fs.writeFileSync(name, output.code)
             },
         },

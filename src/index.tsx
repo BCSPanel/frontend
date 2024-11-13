@@ -10,4 +10,4 @@ createRoot(self.root).render(
 	</HashRouter>
 );
 
-self.loading?.remove();
+self.root.style.display = "";

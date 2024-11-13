@@ -7,8 +7,6 @@ declare interface Document {
 }
 
 declare interface Window {
-    supportES2023: boolean
-
+    supportES2023?: boolean
     root: HTMLDivElement
-    loading?: HTMLDivElement
 }
