@@ -12,7 +12,24 @@ window.supportES2023 = !!(function () {
 })();
 
 (function () {
+	function safeInner(s) {
+		return String(s)
+			.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+	}
+
+	/** @param {string | undefined} s */
+	function cutOrigin(s) {
+		if (s) {
+			var origin = location.protocol + '//' + location.host
+			if (s.slice(0, origin.length) == origin)
+				return s.slice(origin.length)
+		}
+		return s
+	}
+
 	var notFirst = false
+
 	window.onerror = function (event, source, lineo, colno) {
 		if (notFirst) return
 		notFirst = true
@@ -61,12 +78,12 @@ window.supportES2023 = !!(function () {
 			'<p><b>' + (
 				window.supportES2023 ? 'Support' : 'Unsupported'
 			) + '</b> ES2023</p>' +
-			'<p><b>Browser:</b> ' + browserName + '</p>' +
-			'<p><b>UserAgent:</b> ' + UA + '</p>' +
-			'<p><b>Language:</b> ' + (navigator.language || navigator.browserLanguage) + '</p>' +
+			'<p><b>Browser:</b> ' + safeInner(browserName) + '</p>' +
+			'<p><b>UserAgent:</b> ' + safeInner(UA) + '</p>' +
+			'<p><b>Language:</b> ' + safeInner(navigator.language || navigator.browserLanguage) + '</p>' +
 			'<p style=margin-top:40px>' + (
-				String(event).replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<br>' +
-				(source && source.replace(location.protocol + '//' + location.host, '')) + ' (' + lineo + ', ' + colno + ')'
+				safeInner(event) + '<br>' +
+				safeInner(cutOrigin(source)) + ' (' + lineo + ', ' + colno + ')'
 			) + '</p>'
 
 		function f() {
