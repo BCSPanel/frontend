@@ -1,7 +1,7 @@
 //@ts-check
 /// <reference types="../loading-failed.d.ts" />
 
-// need compatible:
+// need test:
 // 	 Internet Explorer 6 (Windows XP)
 // 	 Internet Explorer 8 (Windows 7 SP1)
 // 	 Internet Explorer 11
@@ -31,16 +31,23 @@ window.supportES2023 = !!(function () {
 
 		document.write(style)
 
-		/** @type {string | RegExpExecArray | null} */
-		var browserName
-		if (browserName = /(MSIE |(Firefox|Edg|Edge|Opera|OPR|Chrome|Safari)\/)[\d\.]+/.exec(navigator.userAgent))
-			browserName = browserName[0]
-		else if (navigator.userAgent.indexOf('Trident') > -1)
-			browserName = 'IE 11'
-		else
-			browserName = 'unknown'
+		var UA = navigator.userAgent
+		var browserName = 'unknown'
 
-		if (navigator.userAgent.indexOf('Mobi') > -1)
+		var browserExec = /(Firefox|FxiOS|Chrome|CriOS|Safari|Edge|Opera|MSIE|Trident)[\/ ]([\d\.]+)/.exec(UA)
+		if (browserExec) {
+			if (browserExec[1] == 'Trident') {
+				browserName = 'MSIE 11'
+			} else {
+				var versionExec = /Version\/([\d\.]+)/.exec(UA)
+				if (versionExec)
+					browserName = browserExec[1] + ' ' + versionExec[1]
+				else
+					browserName = browserExec[0]
+			}
+		}
+
+		if (UA.indexOf('Mobi') > -1)
 			browserName += ' Mobile'
 
 		var link = 'https://bcspanel.bddjr.com/loadingfailed'
@@ -51,12 +58,12 @@ window.supportES2023 = !!(function () {
 				window.supportES2023 ? '' : ', please upgrade or change browser'
 			) + '</h2>' +
 			'<p style=margin-bottom:40px>For more info about this issue and possible fixes, visit <a target=_blank href=' + link + '>' + link + '</a></p>' +
-			'<p>' + (
+			'<p><b>' + (
 				window.supportES2023 ? 'Support' : 'Unsupported'
-			) + ' ES2023</p>' +
-			'<p>Browser: ' + browserName + '</p>' +
-			'<p>UserAgent: ' + navigator.userAgent + '</p>' +
-			'<p>Language: ' + (navigator.language || navigator.browserLanguage) + '</p>' +
+			) + '</b> ES2023</p>' +
+			'<p><b>Browser:</b> ' + browserName + '</p>' +
+			'<p><b>UserAgent:</b> ' + UA + '</p>' +
+			'<p><b>Language:</b> ' + (navigator.language || navigator.browserLanguage) + '</p>' +
 			'<p style=margin-top:40px>' + (
 				String(event).replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<br>' +
 				(source && source.replace(location.protocol + '//' + location.host, '')) + ' (' + lineo + ', ' + colno + ')'
