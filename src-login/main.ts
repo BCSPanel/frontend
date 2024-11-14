@@ -1,3 +1,5 @@
+console.log('main.ts')
+
 import "./css/index.scss";
 import { submit } from "./submit";
 
@@ -13,4 +15,6 @@ function init() {
     self.inputUserName.focus()
 }
 
-document.readyState != "loading" ? init() : document.addEventListener("DOMContentLoaded", init)
+document.readyState == "loading"
+    ? document.addEventListener("DOMContentLoaded", init)
+    : init()
