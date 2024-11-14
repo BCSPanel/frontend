@@ -18,16 +18,6 @@ window.supportES2023 = !!(function () {
 			.replace(/</g, '&lt;')
 	}
 
-	/** @param {string | undefined} s */
-	function cutOrigin(s) {
-		if (s) {
-			var origin = location.protocol + '//' + location.host
-			if (s.slice(0, origin.length) == origin)
-				return s.slice(origin.length)
-		}
-		return s
-	}
-
 	var notFirst = false
 
 	window.onerror = function (event, source, lineo, colno) {
@@ -39,6 +29,8 @@ window.supportES2023 = !!(function () {
 		// @ts-ignore
 		if (window.stop) stop()
 
+		// ---style---
+
 		var style = '<style>' +
 			'body{background-color:#2977e7;margin:32px;color:white;font-family:Arial}' +
 			'h1{font-size:80px}' +
@@ -47,6 +39,8 @@ window.supportES2023 = !!(function () {
 			'</style>'
 
 		document.write(style)
+
+		// ---browser name---
 
 		var UA = navigator.userAgent
 		var browserName = 'unknown'
@@ -67,6 +61,16 @@ window.supportES2023 = !!(function () {
 		if (UA.indexOf('Mobi') > -1)
 			browserName += ' Mobile'
 
+		// ---source---
+
+		if (source) {
+			var origin = location.protocol + '//' + location.host
+			if (source.slice(0, origin.length) == origin)
+				source = source.slice(origin.length)
+		}
+
+		// ---build---
+
 		var link = 'https://bcspanel.bddjr.com/loadingfailed'
 
 		var output = style +
@@ -83,8 +87,10 @@ window.supportES2023 = !!(function () {
 			'<p><b>Language:</b> ' + safeInner(navigator.language || navigator.browserLanguage) + '</p>' +
 			'<p style=margin-top:40px>' + (
 				safeInner(event) + '<br>' +
-				safeInner(cutOrigin(source)) + ' (' + lineo + ', ' + colno + ')'
+				safeInner(source) + ' (' + lineo + ', ' + colno + ')'
 			) + '</p>'
+
+		// ---write---
 
 		function f() {
 			document.close()
