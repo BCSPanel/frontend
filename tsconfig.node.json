@@ -4,6 +4,7 @@
     "skipLibCheck": true,
     "target": "ESNext",
     "module": "ESNext",
+    "lib": ["ESNext"],
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "strict": true

@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "composite": true,
+        "noEmit": false,
+        // "allowImportingTsExtensions": false
+        "checkJs": true,
+        "outDir": "node_modules",
+
+        // 选项“target=ES3”已删除。请从配置中删除它。
+        "lib": ["ES5", "DOM"]
+    },
+    "include": ["public/loading-failed.js"],
+    "references": [],
+}

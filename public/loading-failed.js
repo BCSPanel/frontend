@@ -2,7 +2,6 @@
 /// <reference types="../loading-failed.d.ts" />
 
 // need test:
-// 	 Internet Explorer 6 (Windows XP)
 // 	 Internet Explorer 8 (Windows 7 SP1)
 // 	 Internet Explorer 11
 
@@ -12,6 +11,7 @@ window.supportES2023 = !!(function () {
 })();
 
 (function () {
+	/** @param {any} s */
 	function safeInner(s) {
 		return String(s)
 			.replace(/&/g, '&amp;')
@@ -29,16 +29,19 @@ window.supportES2023 = !!(function () {
 		// @ts-ignore
 		if (window.stop) stop()
 
-		// ---style---
+		// ---head---
 
-		var style = '<style>' +
-			'body{background-color:#2977e7;margin:32px;color:white;font-family:Arial}' +
-			'h1{font-size:80px}' +
-			'h2{margin:48px 0;font-size:30px}' +
-			'a{color:white}' +
+		var head = '<meta name=viewport content=initial-scale=0.7>' +
+			'<style>' +
+			'*{color:white}' +
+			'body{background-color:#2977e7;margin:32px;font-family:sans-serif}' +
+			'p{margin:8px 0}' +
+			'.h1{font-size:80px;margin:0 0 16px -6px}' +
+			'.h2{margin:0;font-size:30px}' +
+			'.visit{margin:48px 0}' +
 			'</style>'
 
-		document.write(style)
+		document.write(head)
 
 		// ---browser name---
 
@@ -73,22 +76,21 @@ window.supportES2023 = !!(function () {
 
 		var link = 'https://bcspanel.bddjr.com/loadingfailed'
 
-		var output = style +
-			'<h1>:(</h1>' +
-			'<h2>Loading failed' + (
-				window.supportES2023 ? '' : ', please upgrade or change browser'
-			) + '</h2>' +
-			'<p style=margin-bottom:40px>For more info about this issue and possible fixes, visit <a target=_blank href=' + link + '>' + link + '</a></p>' +
-			'<p><b>' + (
-				window.supportES2023 ? 'Support' : 'Unsupported'
-			) + '</b> ES2023</p>' +
+		var output = head +
+			'<p class=h1>:(</p>' +
+			'<p class=h2>Loading failed' + (
+				window.supportES2023 ? '' : ',<br>please upgrade or change browser'
+			) + '.</p>' +
+			'<p class=visit>For more info about this issue and possible fixes, visit <a target=_blank href="' + link + '">' + link + '</a></p>' +
+			'<p>' + safeInner(event) + '</p>' +
+			'<p>' + safeInner(source) + ' (' + lineo + ', ' + colno + ')</p>' +
 			'<p><b>Browser:</b> ' + safeInner(browserName) + '</p>' +
-			'<p><b>UserAgent:</b> ' + safeInner(UA) + '</p>' +
+			'<p><b>ES2023:</b> ' + (
+				window.supportES2023 ? 'Support' : 'Unsupported'
+			) + '</p>' +
 			'<p><b>Language:</b> ' + safeInner(navigator.language || navigator.browserLanguage) + '</p>' +
-			'<p style=margin-top:40px>' + (
-				safeInner(event) + '<br>' +
-				safeInner(source) + ' (' + lineo + ', ' + colno + ')'
-			) + '</p>'
+			'<p><b>UserAgent:</b> ' + safeInner(UA) + '</p>' +
+			''
 
 		// ---write---
 
